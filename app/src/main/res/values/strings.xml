@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Focus Sign Up</string>
+
+    <string name="frame_4034">frame_4034</string>
+    <string name="logo">logo</string>
+    <string name="registration">Регистрация</string>
+    <string name="button_account_exists">Есть аккаунт</string>
+    <string name="button_save">Сохранить</string>
+    <string name="edit_text_name">Имя</string>
+    <string name="edit_text_email">Электронная почта</string>
+    <string name="edit_text_password">Пароль</string>
+    <string name="edit_text_confirm_password">Подтверждение пароля</string>
+</resources>
