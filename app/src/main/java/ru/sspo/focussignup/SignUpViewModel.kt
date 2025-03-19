@@ -5,9 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SignUpViewModel : ViewModel() {
+@HiltViewModel
+class SignUpViewModel @Inject constructor(private val bar: String) : ViewModel() {
 
     private val _signUpResult = MutableLiveData<String>()
     val signUpResult: LiveData<String> get() = _signUpResult
@@ -19,10 +22,10 @@ class SignUpViewModel : ViewModel() {
         confirmPassword: String
     ) {
         viewModelScope.launch {
-            if (validateUsername(username)) return@launch
-            if (validateEmail(email)) return@launch
-            if (validatePassword(password)) return@launch
-            if (validateConfirmPassword(password, confirmPassword)) return@launch
+//            if (validateUsername(username)) return@launch
+//            if (validateEmail(email)) return@launch
+//            if (validatePassword(password)) return@launch
+//            if (validateConfirmPassword(password, confirmPassword)) return@launch
 
 //            val existingUser = userDao.getUserByEmail(email)
 //            if (existingUser != null) {
@@ -33,6 +36,7 @@ class SignUpViewModel : ViewModel() {
 //            userDao.insert(User(username = username, email = email, password = password))
 //            _signUpResult.value = "Registration Successful!"
         }
+        _signUpResult.value = bar
 
         // Если все проверки пройдены
 //        _signUpResult.value = "Registration Successful!"
