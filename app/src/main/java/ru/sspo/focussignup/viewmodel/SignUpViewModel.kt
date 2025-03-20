@@ -1,4 +1,4 @@
-package ru.sspo.focussignup
+package ru.sspo.focussignup.viewmodel
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData
@@ -7,10 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import ru.sspo.focussignup.room.User
+import ru.sspo.focussignup.room.UserDao
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(private val bar: String) : ViewModel() {
+class SignUpViewModel @Inject constructor(private val userDao: UserDao) : ViewModel() {
 
     private val _signUpResult = MutableLiveData<String>()
     val signUpResult: LiveData<String> get() = _signUpResult
@@ -26,26 +28,39 @@ class SignUpViewModel @Inject constructor(private val bar: String) : ViewModel()
 //            if (validateEmail(email)) return@launch
 //            if (validatePassword(password)) return@launch
 //            if (validateConfirmPassword(password, confirmPassword)) return@launch
+//            if (ifExistingUser(email)) return@launch
 
-//            val existingUser = userDao.getUserByEmail(email)
-//            if (existingUser != null) {
-//                _signUpResult.value = "User already exists with this email."
-//                return@launch
-//            }
-
-//            userDao.insert(User(username = username, email = email, password = password))
-//            _signUpResult.value = "Registration Successful!"
+            if (validateUsername(username) ||
+                validateEmail(email) ||
+                validatePassword(password) ||
+                validateConfirmPassword(password, confirmPassword) ||
+                ifExistingUser(email)
+            ) return@launch
+            signUpUser(username, email, password)
         }
-        _signUpResult.value = bar
+    }
 
-        // Если все проверки пройдены
-//        _signUpResult.value = "Registration Successful!"
-        // Здесь можно добавить логику для отправки данных на сервер или сохранения в базу данных
+    private suspend fun signUpUser(
+        username: String,
+        email: String,
+        password: String
+    ) {
+        userDao.insert(User(username = username, email = email, password = password))
+        _signUpResult.postValue("Registration Successful!")
+    }
+
+    private suspend fun ifExistingUser(email: String): Boolean {
+        val existingUser = userDao.getUserByEmail(email)
+        if (existingUser != null) {
+            _signUpResult.postValue("User already exists with this email.")
+            return true
+        }
+        return false
     }
 
     private fun validateConfirmPassword(password: String, confirmPassword: String): Boolean {
         if (password != confirmPassword) {
-            _signUpResult.value = "Passwords do not match"
+            _signUpResult.postValue("Passwords do not match")
             return true
         }
         return false
@@ -53,7 +68,7 @@ class SignUpViewModel @Inject constructor(private val bar: String) : ViewModel()
 
     private fun validatePassword(password: String): Boolean {
         if (password.length !in 5..64) {
-            _signUpResult.value = "Password must be between 5 and 64 characters"
+            _signUpResult.postValue("Password must be between 5 and 64 characters")
             return true
         }
         return false
@@ -61,7 +76,7 @@ class SignUpViewModel @Inject constructor(private val bar: String) : ViewModel()
 
     private fun validateEmail(email: String): Boolean {
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() || email.length > 50) {
-            _signUpResult.value = "Invalid email address (max 50 characters)"
+            _signUpResult.postValue("Invalid email address (max 50 characters)")
             return true
         }
         return false
@@ -69,7 +84,7 @@ class SignUpViewModel @Inject constructor(private val bar: String) : ViewModel()
 
     private fun validateUsername(username: String): Boolean {
         if (username.isBlank() || username.length !in 1..35) {
-            _signUpResult.value = "Name must be between 1 and 35 characters"
+            _signUpResult.postValue("Name must be between 1 and 35 characters")
             return true
         }
         return false

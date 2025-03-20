@@ -1,4 +1,4 @@
-package ru.sspo.focussignup
+package ru.sspo.focussignup.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
 import ru.sspo.focussignup.databinding.FragmentSignUpBinding
-import javax.inject.Inject
+import ru.sspo.focussignup.viewmodel.SignUpViewModel
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
@@ -32,9 +31,13 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.signUpResult.observe(
-            viewLifecycleOwner,
-            Observer { result -> Toast.makeText(activity, result, Toast.LENGTH_SHORT).show() })
+            viewLifecycleOwner
+        ) { result -> Toast.makeText(activity, result, Toast.LENGTH_SHORT).show() }
 
+        initSaveButton()
+    }
+
+    private fun initSaveButton() {
         binding.buttonSave.setOnClickListener {
             val username = binding.editTextName.text.toString().trim()
             val email = binding.editTextEmail.text.toString().trim()

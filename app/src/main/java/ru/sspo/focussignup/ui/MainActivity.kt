@@ -1,4 +1,4 @@
-package ru.sspo.focussignup
+package ru.sspo.focussignup.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
