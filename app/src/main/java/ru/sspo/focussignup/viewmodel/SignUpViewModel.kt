@@ -24,11 +24,6 @@ class SignUpViewModel @Inject constructor(private val userDao: UserDao) : ViewMo
         confirmPassword: String
     ) {
         viewModelScope.launch {
-//            if (validateUsername(username)) return@launch
-//            if (validateEmail(email)) return@launch
-//            if (validatePassword(password)) return@launch
-//            if (validateConfirmPassword(password, confirmPassword)) return@launch
-//            if (ifExistingUser(email)) return@launch
 
             if (validateUsername(username) ||
                 validateEmail(email) ||
