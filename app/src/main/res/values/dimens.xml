@@ -1,5 +1,12 @@
 <resources>
-    <dimen name="normal_gap">24dp</dimen>
-    <dimen name="large_gap">48dp</dimen>
-    <dimen name="text_field_corner_radius">32dp</dimen>
+    <dimen name="small_gap">10dp</dimen>
+    <dimen name="normal_gap">16dp</dimen>
+    <dimen name="text_field_corner_radius">20dp</dimen>
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="regular_font_size">14sp</dimen>
+    <dimen name="text_field_height">32dp</dimen>
+    <dimen name="header_text_size">24sp</dimen>
+    <dimen name="separator_height">1dp</dimen>
+    <dimen name="stroke_width">1dp</dimen>
+    <dimen name="elements_width">328dp</dimen>
 </resources>

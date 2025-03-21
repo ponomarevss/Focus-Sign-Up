@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/main">
+    android:background="@color/main"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/normal_gap">
+        android:paddingStart="@dimen/normal_gap"
+        android:paddingEnd="@dimen/normal_gap">
 
         <!-- Верхняя панель с логотипом и кнопками меню -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="328dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_gravity="center"
             android:gravity="center_vertical"
-            android:paddingBottom="@dimen/large_gap">
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/normal_gap">
 
             <ImageView
                 android:id="@+id/logo"
@@ -38,132 +39,172 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/frame_4034"
-                android:src="@drawable/frame_4034"/>
+                android:src="@drawable/frame_4034" />
         </LinearLayout>
 
         <!-- Разделитель -->
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black"
-            android:layout_marginBottom="@dimen/normal_gap"/>
-
-        <!-- Заголовок -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/registration"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:paddingBottom="@dimen/normal_gap"/>
-
-        <!-- Поля для ввода текста -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/edit_text_name"
-            app:boxStrokeColor="@color/gray"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusTopStart="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusTopEnd="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusBottomStart="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusBottomEnd="@dimen/text_field_corner_radius">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:layout_marginBottom="@dimen/normal_gap"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/edit_text_email"
-            app:boxStrokeColor="@color/gray"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusTopStart="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusTopEnd="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusBottomStart="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusBottomEnd="@dimen/text_field_corner_radius">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:layout_marginBottom="@dimen/normal_gap"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/edit_text_password"
-            app:boxStrokeColor="@color/gray"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusTopStart="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusTopEnd="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusBottomStart="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusBottomEnd="@dimen/text_field_corner_radius">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:layout_marginBottom="@dimen/normal_gap"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/edit_text_confirm_password"
-            app:boxStrokeColor="@color/gray"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusTopStart="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusTopEnd="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusBottomStart="@dimen/text_field_corner_radius"
-            app:boxCornerRadiusBottomEnd="@dimen/text_field_corner_radius">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextConfirmPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:layout_marginBottom="@dimen/normal_gap"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_width="328dp"
+            android:layout_gravity="center"
+            android:layout_height="@dimen/separator_height"
+            android:background="@android:color/black" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="328dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/normal_gap"
+            android:paddingBottom="@dimen/normal_gap">
+
+            <!-- Заголовок -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/geologica"
+                android:includeFontPadding="false"
+                android:paddingBottom="@dimen/small_gap"
+                android:text="@string/registration"
+                android:textAlignment="center"
+                android:textSize="@dimen/header_text_size" />
+
+            <!-- Поле для ввода текста Имя-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_text_name"
+                android:paddingBottom="@dimen/small_gap"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/text_field_corner_radius"
+                app:boxStrokeColor="@color/gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextName"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_hk"
+                    android:inputType="textPersonName"
+                    android:padding="0dp"
+                    android:minHeight="0dp"
+                    android:textSize="@dimen/regular_font_size" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Поле для ввода текста Электронная почта-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_text_email"
+                android:paddingBottom="@dimen/small_gap"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/text_field_corner_radius"
+                app:boxStrokeColor="@color/gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_hk"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:textSize="@dimen/regular_font_size" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Поле для ввода текста Пароль-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_text_password"
+                android:paddingBottom="@dimen/small_gap"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/text_field_corner_radius"
+                app:boxStrokeColor="@color/gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_hk"
+                    android:inputType="textPassword"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:textSize="@dimen/regular_font_size" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Поле для ввода текста Подтверждение пароля-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_text_confirm_password"
+                android:paddingBottom="@dimen/small_gap"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusBottomStart="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusTopEnd="@dimen/text_field_corner_radius"
+                app:boxCornerRadiusTopStart="@dimen/text_field_corner_radius"
+                app:boxStrokeColor="@color/gray">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_hk"
+                    android:inputType="textPassword"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:textSize="@dimen/regular_font_size" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Раздел с кнопками -->
+        <LinearLayout
+            android:layout_width="@dimen/elements_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center_vertical"
-            android:paddingTop="@dimen/normal_gap">
+            android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonAccountExists"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/button_height"
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/transparent"
-                app:strokeColor="@color/black"
-                app:strokeWidth="1dp"
+                android:fontFamily="@font/noto_sans_hk"
+                android:includeFontPadding="false"
+                android:minHeight="0dp"
+                android:padding="0dp"
                 android:text="@string/button_account_exists"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/regular_font_size"
+                app:strokeColor="@color/black"
+                app:strokeWidth="@dimen/stroke_width" />
 
             <Space
                 android:layout_width="@dimen/normal_gap"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonSave"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/button_height"
                 android:layout_weight="1"
                 android:backgroundTint="@color/yellow"
+                android:fontFamily="@font/noto_sans_hk"
+                android:includeFontPadding="false"
                 android:text="@string/button_save"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/regular_font_size" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
