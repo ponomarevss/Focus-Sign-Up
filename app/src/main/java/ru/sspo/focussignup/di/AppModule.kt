@@ -7,13 +7,16 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ru.sspo.focussignup.room.AppDatabase
-import ru.sspo.focussignup.room.UserDao
+import ru.sspo.focussignup.domain.SignUpUseCase
+import ru.sspo.focussignup.repository.RoomUserRepository
+import ru.sspo.focussignup.repository.UserRepository
+import ru.sspo.focussignup.repository.room.AppDatabase
+import ru.sspo.focussignup.repository.room.UserDao
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DatabaseModule {
+object AppModule {
 
     @Provides
     @Singleton
@@ -26,7 +29,14 @@ object DatabaseModule {
     }
 
     @Provides
-    fun provideUserDao(database: AppDatabase): UserDao {
-        return database.userDao()
-    }
+    @Singleton
+    fun provideUserDao(database: AppDatabase): UserDao = database.userDao()
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(userDao: UserDao): UserRepository = RoomUserRepository(userDao)
+
+    @Provides
+    @Singleton
+    fun provideSignUpUseCase(): SignUpUseCase = SignUpUseCase()
 }

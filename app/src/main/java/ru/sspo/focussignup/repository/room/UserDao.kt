@@ -1,4 +1,4 @@
-package ru.sspo.focussignup.room
+package ru.sspo.focussignup.repository.room
 
 import androidx.room.Dao
 import androidx.room.Insert
