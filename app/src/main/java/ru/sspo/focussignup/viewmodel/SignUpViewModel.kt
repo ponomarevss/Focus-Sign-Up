@@ -7,14 +7,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.sspo.focussignup.domain.SignUpUseCase
-import ru.sspo.focussignup.repository.UserRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(
-    private val signUpUseCase: SignUpUseCase,
-    private val userRepository: UserRepository
-) : ViewModel() {
+class SignUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCase) : ViewModel() {
 
     private val _signUpResult = MutableLiveData<String>()
     val signUpResult: LiveData<String> get() = _signUpResult
@@ -27,31 +23,29 @@ class SignUpViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
 
-            if (!signUpUseCase.validateUsername(username)) {
-                _signUpResult.postValue("Invalid username")
+            signUpUseCase.validateUsername(username)?.let {
+                _signUpResult.postValue(it)
                 return@launch
             }
-            if (!signUpUseCase.validateEmail(email)) {
-                _signUpResult.postValue("Invalid email")
+            signUpUseCase.validateEmail(email)?.let {
+                _signUpResult.postValue(it)
                 return@launch
             }
-            if (!signUpUseCase.validatePassword(password)) {
-                _signUpResult.postValue("Invalid password")
+            signUpUseCase.validatePassword(password)?.let {
+                _signUpResult.postValue(it)
                 return@launch
             }
-            if (!signUpUseCase.validateConfirmPassword(password, confirmPassword)) {
-                _signUpResult.postValue("Passwords do not match")
-                return@launch
-            }
-
-            val existingUser = userRepository.getUserByEmail(email)
-            if (existingUser != null) {
-                _signUpResult.postValue("User already exists")
+            signUpUseCase.validateConfirmPassword(password, confirmPassword)?.let {
+                _signUpResult.postValue(it)
                 return@launch
             }
 
-            userRepository.insertUser(username, email, password)
-            _signUpResult.postValue("Registration successful!")
+            signUpUseCase.isExistingUser(email)?.let {
+                _signUpResult.postValue(it)
+                return@launch
+            }
+
+            _signUpResult.postValue(signUpUseCase.registerUser(username, email, password))
         }
     }
 }

@@ -38,5 +38,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSignUpUseCase(): SignUpUseCase = SignUpUseCase()
+    fun provideSignUpUseCase(userRepository: UserRepository): SignUpUseCase =
+        SignUpUseCase(userRepository)
 }
