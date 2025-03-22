@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ru.sspo.focussignup.domain.SignUpUseCase
+import ru.sspo.focussignup.domain.SignUpUseCaseImpl
 import ru.sspo.focussignup.repository.RoomUserRepository
 import ru.sspo.focussignup.repository.UserRepository
 import ru.sspo.focussignup.repository.room.AppDatabase
@@ -39,5 +40,5 @@ object AppModule {
     @Provides
     @Singleton
     fun provideSignUpUseCase(userRepository: UserRepository): SignUpUseCase =
-        SignUpUseCase(userRepository)
+        SignUpUseCaseImpl(userRepository)
 }
