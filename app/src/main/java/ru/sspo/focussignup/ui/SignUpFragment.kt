@@ -7,9 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import ru.sspo.focussignup.R
 import ru.sspo.focussignup.databinding.FragmentSignUpBinding
-import ru.sspo.focussignup.viewmodel.SignUpViewModel
+import ru.sspo.focussignup.ui.viewmodel.SignUpViewModel
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
@@ -29,12 +33,26 @@ class SignUpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.signUpResult.observe(
-            viewLifecycleOwner
-        ) { result -> Toast.makeText(activity, result, Toast.LENGTH_SHORT).show() }
-
         initSaveButton()
+        initObservers()
+    }
+
+    private fun initObservers() {
+        viewModel.signUpScreenState.onEach { screenState ->
+            when (screenState) {
+                is SignUpScreenState.Error -> {
+                    Toast.makeText(activity, screenState.error, Toast.LENGTH_SHORT).show()
+                }
+
+                SignUpScreenState.Success -> {
+                    Toast.makeText(
+                        activity,
+                        getString(R.string.registration_successful),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun initSaveButton() {
@@ -44,7 +62,7 @@ class SignUpFragment : Fragment() {
             val password = binding.editTextPassword.text.toString().trim()
             val confirmPassword = binding.editTextConfirmPassword.text.toString().trim()
 
-            viewModel.onSignUpButtonClicked(username, email, password, confirmPassword)
+            viewModel.handleSignUp(username, email, password, confirmPassword)
         }
     }
 

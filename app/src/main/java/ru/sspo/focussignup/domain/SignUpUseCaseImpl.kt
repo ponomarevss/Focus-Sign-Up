@@ -1,7 +1,7 @@
 package ru.sspo.focussignup.domain
 
 import android.util.Patterns
-import ru.sspo.focussignup.repository.UserRepository
+import ru.sspo.focussignup.ui.viewmodel.SignUpUseCase
 import javax.inject.Inject
 
 class SignUpUseCaseImpl @Inject constructor(private val userRepository: UserRepository) :
@@ -15,38 +15,52 @@ class SignUpUseCaseImpl @Inject constructor(private val userRepository: UserRepo
         const val PASSWORD_LENGTH_ERROR = "Password must be between 5 and 64 characters"
         const val PASSWORD_MISMATCH_ERROR = "Passwords do not match"
         const val USER_EXISTS_ERROR = "User already exists"
-        const val REGISTRATION_SUCCESS = "Registration successful!"
     }
 
-    override fun validateUsername(username: String): String? = when {
+    override suspend fun signUpUser(
+        username: String,
+        email: String,
+        password: String,
+        confirmPassword: String
+    ): SignUpResult {
+        validateUsername(username)?.let { return SignUpResult.Error(it) }
+        validateEmail(email)?.let { return SignUpResult.Error(it) }
+        validatePassword(password)?.let { return SignUpResult.Error(it) }
+        validateConfirmPassword(password, confirmPassword)?.let { return SignUpResult.Error(it) }
+        checkIfUserExists(email)?.let { return SignUpResult.Error(it) }
+
+        registerUser(username, email, password)
+        return SignUpResult.Success
+    }
+
+    private fun validateUsername(username: String): String? = when {
         username.isBlank() -> USERNAME_EMPTY_ERROR
         username.length !in 1..35 -> USERNAME_LENGTH_ERROR
         else -> null
     }
 
-    override fun validateEmail(email: String): String? = when {
+    private fun validateEmail(email: String): String? = when {
         !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> EMAIL_FORMAT_ERROR
         email.length > 50 -> EMAIL_LENGTH_ERROR
         else -> null
     }
 
-    override fun validatePassword(password: String): String? = when {
+    private fun validatePassword(password: String): String? = when {
         password.length !in 5..64 -> PASSWORD_LENGTH_ERROR
         else -> null
     }
 
-    override fun validateConfirmPassword(password: String, confirmPassword: String): String? =
+    private fun validateConfirmPassword(password: String, confirmPassword: String): String? =
         if (password != confirmPassword) {
             PASSWORD_MISMATCH_ERROR
         } else {
             null
         }
 
-    override suspend fun isExistingUser(email: String): String? =
+    private suspend fun checkIfUserExists(email: String): String? =
         userRepository.getUserByEmail(email)?.let { USER_EXISTS_ERROR }
 
-    override suspend fun registerUser(username: String, email: String, password: String): String {
+    private suspend fun registerUser(username: String, email: String, password: String) {
         userRepository.insertUser(username, email, password)
-        return REGISTRATION_SUCCESS
     }
 }

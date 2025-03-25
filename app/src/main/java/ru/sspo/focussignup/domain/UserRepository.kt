@@ -1,4 +1,4 @@
-package ru.sspo.focussignup.repository
+package ru.sspo.focussignup.domain
 
 import ru.sspo.focussignup.repository.room.User
 

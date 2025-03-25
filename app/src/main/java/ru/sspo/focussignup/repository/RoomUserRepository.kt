@@ -1,9 +1,11 @@
 package ru.sspo.focussignup.repository
 
+import ru.sspo.focussignup.domain.UserRepository
 import ru.sspo.focussignup.repository.room.User
 import ru.sspo.focussignup.repository.room.UserDao
+import javax.inject.Inject
 
-class RoomUserRepository(private val userDao: UserDao) : UserRepository {
+class RoomUserRepository @Inject constructor(private val userDao: UserDao) : UserRepository {
     override suspend fun getUserByEmail(email: String): User? {
         return userDao.getUserByEmail(email)
     }
