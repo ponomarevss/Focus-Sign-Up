@@ -1,4 +1,4 @@
-package ru.sspo.focussignup.domain
+package ru.sspo.focussignup.domain.model
 
 sealed class SignUpResult {
     data object Success: SignUpResult()

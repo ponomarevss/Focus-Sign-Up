@@ -7,8 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ru.sspo.focussignup.repository.room.AppDatabase
-import ru.sspo.focussignup.repository.room.UserDao
+import ru.sspo.focussignup.domain.repository.room.AppDatabase
+import ru.sspo.focussignup.domain.repository.room.UserDao
 import javax.inject.Singleton
 
 @Module

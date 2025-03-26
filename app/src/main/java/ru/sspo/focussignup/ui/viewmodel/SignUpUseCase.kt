@@ -1,6 +1,6 @@
 package ru.sspo.focussignup.ui.viewmodel
 
-import ru.sspo.focussignup.domain.SignUpResult
+import ru.sspo.focussignup.domain.model.SignUpResult
 
 interface SignUpUseCase {
     suspend fun signUpUser(

@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.sspo.focussignup.ui.viewmodel.SignUpUseCase
-import ru.sspo.focussignup.domain.SignUpUseCaseImpl
+import ru.sspo.focussignup.domain.usecase.SignUpUseCaseImpl
 
 @Module
 @InstallIn(SingletonComponent::class)

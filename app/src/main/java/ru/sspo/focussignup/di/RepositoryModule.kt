@@ -4,8 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.sspo.focussignup.repository.RoomUserRepository
-import ru.sspo.focussignup.domain.UserRepository
+import ru.sspo.focussignup.domain.repository.RoomUserRepository
+import ru.sspo.focussignup.domain.usecase.UserRepository
 
 @Module
 @InstallIn(SingletonComponent::class)

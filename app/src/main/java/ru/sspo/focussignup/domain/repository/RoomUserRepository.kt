@@ -1,8 +1,8 @@
-package ru.sspo.focussignup.repository
+package ru.sspo.focussignup.domain.repository
 
-import ru.sspo.focussignup.domain.UserRepository
-import ru.sspo.focussignup.repository.room.User
-import ru.sspo.focussignup.repository.room.UserDao
+import ru.sspo.focussignup.domain.usecase.UserRepository
+import ru.sspo.focussignup.domain.repository.room.User
+import ru.sspo.focussignup.domain.repository.room.UserDao
 import javax.inject.Inject
 
 class RoomUserRepository @Inject constructor(private val userDao: UserDao) : UserRepository {

@@ -1,6 +1,6 @@
-package ru.sspo.focussignup.domain
+package ru.sspo.focussignup.domain.usecase
 
-import ru.sspo.focussignup.repository.room.User
+import ru.sspo.focussignup.domain.repository.room.User
 
 interface UserRepository {
     suspend fun getUserByEmail(email: String): User?

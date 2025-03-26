@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
-import ru.sspo.focussignup.domain.SignUpResult
+import ru.sspo.focussignup.domain.model.SignUpResult
 import ru.sspo.focussignup.ui.SignUpScreenState
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package ru.sspo.focussignup.repository.room
+package ru.sspo.focussignup.domain.repository.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
