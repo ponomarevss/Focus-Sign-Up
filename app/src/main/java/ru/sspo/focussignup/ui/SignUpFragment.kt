@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -39,6 +41,7 @@ class SignUpFragment : Fragment() {
 
     private fun initObservers() {
         viewModel.signUpScreenState.onEach { screenState ->
+            clearFocus()
             when (screenState) {
                 is SignUpScreenState.Error -> {
                     Toast.makeText(activity, screenState.error, Toast.LENGTH_SHORT).show()
@@ -50,6 +53,7 @@ class SignUpFragment : Fragment() {
                         getString(R.string.registration_successful),
                         Toast.LENGTH_SHORT
                     ).show()
+                    clearFields()
                 }
             }
         }.launchIn(lifecycleScope)
@@ -64,6 +68,24 @@ class SignUpFragment : Fragment() {
 
             viewModel.handleSignUp(username, email, password, confirmPassword)
         }
+    }
+
+    private fun clearFocus() {
+        binding.editTextName.clearFocus()
+        binding.editTextEmail.clearFocus()
+        binding.editTextPassword.clearFocus()
+        binding.editTextConfirmPassword.clearFocus()
+
+        val inputMethodManager =
+            ContextCompat.getSystemService(requireContext(), InputMethodManager::class.java)
+        inputMethodManager?.hideSoftInputFromWindow(binding.root.windowToken, 0)
+    }
+
+    private fun clearFields() {
+        binding.editTextName.text?.clear()
+        binding.editTextEmail.text?.clear()
+        binding.editTextPassword.text?.clear()
+        binding.editTextConfirmPassword.text?.clear()
     }
 
     override fun onDestroyView() {
