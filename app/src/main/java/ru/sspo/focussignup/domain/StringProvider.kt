@@ -1,4 +1,4 @@
-package ru.sspo.focussignup.domain.usecase
+package ru.sspo.focussignup.domain
 
 interface StringProvider {
     fun getUsernameEmptyError(): String

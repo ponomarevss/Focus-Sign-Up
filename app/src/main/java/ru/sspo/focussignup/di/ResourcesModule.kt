@@ -6,7 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ru.sspo.focussignup.domain.usecase.StringProvider
+import ru.sspo.focussignup.domain.StringProvider
 import ru.sspo.focussignup.resources.StringProviderImpl
 import javax.inject.Singleton
 

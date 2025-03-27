@@ -2,9 +2,11 @@ package ru.sspo.focussignup.resources
 
 import android.content.Context
 import ru.sspo.focussignup.R
-import ru.sspo.focussignup.domain.usecase.StringProvider
+import ru.sspo.focussignup.domain.StringProvider
 
-class StringProviderImpl(private val context: Context) : StringProvider {
+class StringProviderImpl(
+    private val context: Context
+) : StringProvider {
     override fun getUsernameEmptyError(): String = context.getString(R.string.username_empty_error)
 
     override fun getUsernameLengthError(): String =
