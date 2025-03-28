@@ -9,4 +9,5 @@
     <dimen name="separator_height">1dp</dimen>
     <dimen name="stroke_width">1dp</dimen>
     <dimen name="elements_width">328dp</dimen>
+    <dimen name="main_width_328dp">328dp</dimen>
 </resources>
