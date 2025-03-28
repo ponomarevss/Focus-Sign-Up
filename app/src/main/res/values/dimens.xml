@@ -1,5 +1,5 @@
 <resources>
-    <dimen name="small_gap">10dp</dimen>
+    <dimen name="small_gap">11dp</dimen>
     <dimen name="normal_gap">16dp</dimen>
     <dimen name="text_field_corner_radius">20dp</dimen>
     <dimen name="button_height">40dp</dimen>
